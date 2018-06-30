@@ -1,6 +1,7 @@
 {
   "name": "angular-slider",
   "version": "0.0.0",
+  "description": "Reu",
   "repository": {
     "type": "git",
     "url": "https://github.com/npnm/AngularSlider.git"
