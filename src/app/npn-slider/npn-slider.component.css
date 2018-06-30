@@ -1,0 +1,105 @@
+/*Colors*/
+
+.slider {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: default;
+}
+
+.slider .bar {
+  width: 100%;
+  background: #e8e8e8;
+  height: 10px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px #bbb;
+}
+
+.slider .bar>span.left-handle,
+.slider .bar>span.right-handle {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 5px solid #5ea542;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  cursor: pointer;
+  z-index: 1;
+  margin-left: -8px;
+  transition: left 0.2s ease;
+}
+
+.slider .bar>span.left-handle.last-active,
+.slider .bar>span.right-handle.last-active {
+  z-index: 2;
+}
+
+.slider .bar>span.filler {
+  display: inline-block;
+  position: absolute;
+  background: #c3e0b8;
+  height: 100%;
+  margin-left: -4px;
+  transition: all 0.2s ease;
+}
+
+.slider .bar>span>.handle-tooltip {
+  display: block;
+  position: absolute;
+  top: -32px;
+  left: -15px;
+  border: 1px solid #8cca74;
+  border-radius: 4px;
+  padding: 1px 4px;
+  min-width: 20px;
+  text-align: center;
+  background: #dbe8d6;
+  color: #5ea542;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.slider .bar>span>.handle-tooltip:before {
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: #8cca74;
+  position: absolute;
+  top: 104%;
+  left: 33%;
+}
+
+.slider .bar>span>.handle-tooltip:after {
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: #dbe8d6;
+  position: absolute;
+  top: 100%;
+  left: 33%;
+}
+
+.slider .bar>span:hover>.handle-tooltip,
+.slider .bar>span.active>.handle-tooltip {
+  opacity: 1;
+}
+
+.slider .values {
+  display: block;
+  font-weight: bold;
+  margin-top: 4px;
+  width: 104%;
+  margin-left: -2%;
+  color: #908f90;
+}
+
+.slider .values span:first-child {
+  float: left;
+}
+
+.slider .values span:last-child {
+  float: right;
+}

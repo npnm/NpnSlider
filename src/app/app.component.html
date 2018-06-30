@@ -1,20 +1,43 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<h4>What is Multi Range slider?</h4>
+<p>It is a range slider with two handler. You can select a range of values at a time.
+</p>
+<h4 style="margin-top:15px;">Example1</h4>
+<div class="well">
+  <div class="demo">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Release Year:</label>
+        <div class="col-sm-8">
+          <npn-slider [minMaxValues]="[2006,2020]" [selectedRangeValues]="currentValues" (onSliderValueChange)="onSliderChange1($event)">
+          </npn-slider>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+           <p>SelectedRange: [{{currentValues[0]}} - {{currentValues[1]}}]</p>
+           <p>Step: 1</p>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<h4 style="margin-top:15px;">Example2</h4>
+<div class="well">
+  <div class="demo">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Price Range(Rs.):</label>
+        <div class="col-sm-8">
+          <npn-slider [minMaxValues]="[1000,5000]" [selectedRangeValues]="currentValues2" step="500" (onSliderValueChange)="onSliderChange2($event)">
+          </npn-slider>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+           <p>SelectedRange: [{{currentValues2[0]}} - {{currentValues2[1]}}]</p>
+           <p>Step: 500</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

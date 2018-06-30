@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html,
+body {
+    height: 100%;
+    font-size:16px;
+}
+
+.container-fluid{
+    height: 100%;
+}
+
+header {
+    padding: 25px 10px;
+    border-bottom: 1px solid #ddd;
+    background: #6cb350;
+    color: #fff;
+    height: 104px;
+    font-size: 14px;
+}
+
+header h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+.demo-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: calc(100% - 104px);
+    color:#777;
+}
+
+h4{
+    margin: 5px 0 5px 0;
+    font-size:20px;
+}
+h4 ~ p{
+    padding:0 0 0 3px;
+}
+
+.demo{
+    width: 500px;
+    margin: 15px 0 0 15px;
+    font-size: 14px;
+}
+
+.demo .control-label{
+    padding-top:0;
+}
+
+.well{
+    background-color: #f4f7f3;
+}
+

@@ -1,0 +1,110 @@
+/*Colors*/
+$main-color: #5ea542;
+$light-color: #c3e0b8;
+$tooltip-border-color:#8cca74;
+$extra-light-color: #dbe8d6;
+$text-color:#908f90;
+
+.slider {
+  display: block;
+  width: 100%;
+  height: 30px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: default;
+}
+
+.slider .bar {
+  width: 100%;
+  background: #e8e8e8;
+  height: 10px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 5px #bbb;
+}
+
+.slider .bar>span.left-handle,
+.slider .bar>span.right-handle {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 5px solid $main-color;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  cursor: pointer;
+  z-index: 1;
+  margin-left: -8px;
+  transition: left 0.2s ease;
+}
+
+.slider .bar>span.left-handle.last-active,
+.slider .bar>span.right-handle.last-active {
+  z-index: 2;
+}
+
+.slider .bar>span.filler {
+  display: inline-block;
+  position: absolute;
+  background: $light-color;
+  height: 100%;
+  margin-left: -4px;
+  transition: all 0.2s ease;
+}
+
+.slider .bar>span>.handle-tooltip {
+  display: block;
+  position: absolute;
+  top: -32px;
+  left: -15px;
+  border: 1px solid $tooltip-border-color;
+  border-radius: 4px;
+  padding: 1px 4px;
+  min-width: 20px;
+  text-align: center;
+  background: $extra-light-color;
+  color: $main-color;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.slider .bar>span>.handle-tooltip:before {
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: $tooltip-border-color;
+  position: absolute;
+  top: 104%;
+  left: 33%;
+}
+
+.slider .bar>span>.handle-tooltip:after {
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: $extra-light-color;
+  position: absolute;
+  top: 100%;
+  left: 33%;
+}
+
+.slider .bar>span:hover>.handle-tooltip,
+.slider .bar>span.active>.handle-tooltip {
+  opacity: 1;
+}
+
+.slider .values {
+  display: block;
+  font-weight: bold;
+  margin-top: 4px;
+  width: 104%;
+  margin-left: -2%;
+  color: $text-color;
+}
+
+.slider .values span:first-child {
+  float: left;
+}
+
+.slider .values span:last-child {
+  float: right;
+}
