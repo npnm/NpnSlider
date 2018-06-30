@@ -1,6 +1,10 @@
 {
   "name": "angular-slider",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npnm/AngularSlider.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
