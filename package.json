@@ -1,7 +1,7 @@
 {
   "name": "angular-slider",
   "version": "0.0.0",
-  "description": "Reusable components",
+  "description": "Angular Slide Component",
   "repository": {
     "type": "git",
     "url": "https://github.com/npnm/AngularSlider.git"
