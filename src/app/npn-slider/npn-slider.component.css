@@ -1,5 +1,9 @@
 /*Colors*/
 
+.slider, .slider *{
+  box-sizing: border-box
+}
+
 .slider {
   display: block;
   width: 100%;

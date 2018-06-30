@@ -4,15 +4,15 @@
 <h4 style="margin-top:15px;">Example1</h4>
 <div class="well">
   <div class="demo">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-4 control-label">Release Year:</label>
+    <form>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Release Year:</label>
         <div class="col-sm-8">
           <npn-slider [minMaxValues]="[2006,2020]" [selectedRangeValues]="currentValues" (onSliderValueChange)="onSliderChange1($event)">
           </npn-slider>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group row">
         <div class="col-sm-12">
            <p>SelectedRange: [{{currentValues[0]}} - {{currentValues[1]}}]</p>
            <p>Step: 1</p>
@@ -24,15 +24,15 @@
 <h4 style="margin-top:15px;">Example2</h4>
 <div class="well">
   <div class="demo">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-4 control-label">Price Range(Rs.):</label>
+    <form>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Price Range(Rs.):</label>
         <div class="col-sm-8">
           <npn-slider [minMaxValues]="[1000,5000]" [selectedRangeValues]="currentValues2" step="500" (onSliderValueChange)="onSliderChange2($event)">
           </npn-slider>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group row">
         <div class="col-sm-12">
            <p>SelectedRange: [{{currentValues2[0]}} - {{currentValues2[1]}}]</p>
            <p>Step: 500</p>

@@ -1,4 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';/**/
 
 html,
 body {
@@ -41,13 +41,16 @@ h4 ~ p{
 }
 
 .demo{
-    width: 500px;
-    margin: 15px 0 0 15px;
+    width: 100%;
+    max-width: 500px;
     font-size: 14px;
+    padding: 15px 10px;
+    box-sizing: border-box;
 }
 
-.demo .control-label{
+.demo .col-form-label{
     padding-top:0;
+    font-weight: 600;
 }
 
 .well{
