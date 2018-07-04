@@ -126,7 +126,7 @@
       "root": "projects/npn-slider",
       "sourceRoot": "projects/npn-slider/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "npn",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

@@ -9,12 +9,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "build-lib": "ng build --prod npn-slider",
+    "npm-pack": "cd dist/npn-slider && npm pack",
+    "package": "npm run build-lib && npm run npm-pack",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/common": "^6.0.3",
     "@angular/core": "^6.0.3",

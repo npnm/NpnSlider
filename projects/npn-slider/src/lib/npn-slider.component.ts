@@ -8,17 +8,18 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class NpnSliderComponent implements OnInit {
   private sliderModel = [0, 0, 0];
-  private initValues: number[] = [0, 0];
-  private currentValues: number[] = [0, 0];
-  private handlerX: number[] = [0, 0];
   private sliderWidth = 0;
   private sliderHandlerWidth = 0;
   private totalDiff = 0;
   private startClientX: number = 0;
-  private isMouseDown = false;
-  private currentHandlerIndex = 0;
   private startPleft = 0;
   private startPRight = 0;
+
+  public initValues: number[] = [0, 0];
+  public currentValues: number[] = [0, 0];
+  public handlerX: number[] = [0, 0];
+  public isMouseDown = false;
+  public currentHandlerIndex = 0;
 
   constructor(private el: ElementRef, private _sanitizer: DomSanitizer) {
   }
@@ -119,7 +120,7 @@ export class NpnSliderComponent implements OnInit {
   }
 
   /*Method to detect mouse down event on handler*/
-  private mouseDownSlider(event: MouseEvent, handlerIndex: number) {
+  public mouseDownSlider(event: MouseEvent, handlerIndex: number) {
     event.preventDefault();
     this.startClientX = event.clientX;
     this.currentHandlerIndex = handlerIndex;
@@ -129,7 +130,7 @@ export class NpnSliderComponent implements OnInit {
   }
 
   /*Method to calculate silder handler movement */
-  private mouseSliding(event: MouseEvent) {
+  public mouseSliding(event: MouseEvent) {
     if (this.isMouseDown) {
       let movedX = Math.round((event.clientX - this.startClientX) / this.sliderWidth * this.totalDiff);
       let nextPLeft = this.startPleft + movedX;
@@ -142,7 +143,7 @@ export class NpnSliderComponent implements OnInit {
     }
   }
 
-  private getFillerWidth() {
+  public getFillerWidth() {
     return this._sanitizer.sanitize(SecurityContext.STYLE,
       "calc(" + (this.handlerX[1] - this.handlerX[0]) + "% - -" + (this.sliderHandlerWidth / 2) + "px)");
   }

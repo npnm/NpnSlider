@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NpnSliderModule } from "../../projects/npn-slider/src/lib/npn-slider.module";
+import { NpnSliderModule } from "npn-slider";
 
 import { AppComponent } from './app.component';
 
