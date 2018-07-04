@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { NpnSliderModule } from "../../projects/npn-slider/src/lib/npn-slider.module";
+
 import { AppComponent } from './app.component';
-import { NpnSliderComponent } from './npn-slider/npn-slider.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NpnSliderComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NpnSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

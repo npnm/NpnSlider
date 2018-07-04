@@ -92,7 +92,7 @@ export class NpnSliderComponent implements OnInit {
   /*Method to set handler position */
   private setHandlerPosition() {
     let runningTotal = 0;
-    console.log('model value on move: ' + this.sliderModel);
+    //console.log('model value on move: ' + this.sliderModel);
     // Updating selected values : current values
     this.updateCurrentValue([
       this.initValues[0] + this.sliderModel[0],

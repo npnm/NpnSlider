@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "npn-slider": {
+      "root": "projects/npn-slider",
+      "sourceRoot": "projects/npn-slider/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/npn-slider/tsconfig.lib.json",
+            "project": "projects/npn-slider/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/npn-slider/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/npn-slider/src/test.ts",
+            "tsConfig": "projects/npn-slider/tsconfig.spec.json",
+            "karmaConfig": "projects/npn-slider/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/npn-slider/tsconfig.lib.json",
+              "projects/npn-slider/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "AngularSlider"
