@@ -1,0 +1,20 @@
+span.github-icon{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url('../assets/images/github-icon.svg');
+  margin-right: 4px;
+  position: relative;
+  top:3px;
+}
+a.white-btn{
+  display: inline-block;
+  color:#fff;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+}
+a.white-btn:hover{
+  text-decoration: none;
+}
