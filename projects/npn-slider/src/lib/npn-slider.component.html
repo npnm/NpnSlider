@@ -2,14 +2,16 @@
   <div class="bar">
     <span class="left-handle"
           [ngClass]="{'active':isMouseDown&&currentHandlerIndex==0,'last-active':currentHandlerIndex==0}"
-          [style.left]="handlerX[0]+'%'"
+          [style.left.%]="handlerX[0]"
           (mousedown)="mouseDownSlider($event,0)">
       <span class="handle-tooltip">{{currentValues[0]}}</span>
     </span>
-    <span class="filler" [style.left]="handlerX[0] + '%'" [style.width]="getFillerWidth()"></span>
+    <div class="filler">
+      <span [style.left.%]="handlerX[0]" [style.width.%]="handlerX[1] - handlerX[0]"></span>
+    </div>
     <span class="right-handle"
           [ngClass]="{'active':isMouseDown&&currentHandlerIndex==1, 'last-active':currentHandlerIndex==1}"
-          [style.left]="handlerX[1]+'%'"
+          [style.left.%]="handlerX[1]"
           (mousedown)="mouseDownSlider($event,1)">
       <span class="handle-tooltip">{{currentValues[1]}}</span>
     </span>

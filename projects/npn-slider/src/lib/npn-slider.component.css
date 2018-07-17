@@ -1,6 +1,7 @@
 /*Colors*/
 
-.slider, .slider *{
+.slider,
+.slider * {
   box-sizing: border-box
 }
 
@@ -27,6 +28,7 @@
   display: inline-block;
   width: 18px;
   height: 18px;
+  background: #c3e0b8;
   border: 5px solid #5ea542;
   border-radius: 50%;
   position: absolute;
@@ -42,12 +44,21 @@
   z-index: 2;
 }
 
-.slider .bar>span.filler {
+.slider .bar div.filler {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid #c3e0b8;
+}
+
+.slider .bar div.filler>span {
   display: inline-block;
+  height: 100%;
   position: absolute;
   background: #c3e0b8;
-  height: 100%;
-  margin-left: -4px;
   transition: all 0.2s ease;
 }
 

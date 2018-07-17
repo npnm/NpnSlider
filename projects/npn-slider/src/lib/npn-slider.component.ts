@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SecurityContext } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'npn-slider',
@@ -9,7 +8,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class NpnSliderComponent implements OnInit {
   private sliderModel = [0, 0, 0];
   private sliderWidth = 0;
-  private sliderHandlerWidth = 0;
   private totalDiff = 0;
   private startClientX: number = 0;
   private startPleft = 0;
@@ -21,7 +19,7 @@ export class NpnSliderComponent implements OnInit {
   public isMouseDown = false;
   public currentHandlerIndex = 0;
 
-  constructor(private el: ElementRef, private _sanitizer: DomSanitizer) {
+  constructor(private el: ElementRef) {
   }
 
   @Input('minMaxValues')
@@ -51,7 +49,6 @@ export class NpnSliderComponent implements OnInit {
     try {
       // Taking width of slider bar element.
       this.sliderWidth = this.el.nativeElement.children[0].children[0].offsetWidth;
-      this.sliderHandlerWidth = this.el.nativeElement.children[0].children[0].children[0].offsetWidth;
       this.initializeModel();
     } catch (e) {
       console.error(e);
@@ -99,6 +96,7 @@ export class NpnSliderComponent implements OnInit {
       this.initValues[0] + this.sliderModel[0],
       this.initValues[1] - this.sliderModel[2]
     ]);
+    //console.log(this.sliderModel);
     /*Setting handler position */
     for (let i = 0, len = this.sliderModel.length - 1; i < len; i++) {
       runningTotal += this.sliderModel[i];
@@ -142,10 +140,4 @@ export class NpnSliderComponent implements OnInit {
       }
     }
   }
-
-  public getFillerWidth() {
-    return this._sanitizer.sanitize(SecurityContext.STYLE,
-      "calc(" + (this.handlerX[1] - this.handlerX[0]) + "% - -" + (this.sliderHandlerWidth / 2) + "px)");
-  }
-
 }

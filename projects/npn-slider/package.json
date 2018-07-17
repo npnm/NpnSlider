@@ -1,6 +1,6 @@
 {
   "name": "npn-slider",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": false,
   "peerDependencies": {
     "@angular/common": "^6.0.3",
