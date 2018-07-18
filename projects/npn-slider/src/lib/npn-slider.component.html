@@ -1,18 +1,22 @@
-<div class="slider" (mousemove)="mouseSliding($event)">
-  <div class="bar">
+<!--npn-slider template-->
+<div class="slider">
+  <div class="bar" (mousemove)="handlerSliding($event)"
+                   (panmove)="handlerSliding($event)">
     <span class="left-handle"
-          [ngClass]="{'active':isMouseDown&&currentHandlerIndex==0,'last-active':currentHandlerIndex==0}"
+          [ngClass]="{'active':isHandlerActive&&currentHandlerIndex==0,'last-active':currentHandlerIndex==0}"
           [style.left.%]="handlerX[0]"
-          (mousedown)="mouseDownSlider($event,0)">
+          (mousedown)="setHandlerActive($event,0)"
+          (panstart)="setHandlerActive($event,0)">
       <span class="handle-tooltip">{{currentValues[0]}}</span>
     </span>
     <div class="filler">
       <span [style.left.%]="handlerX[0]" [style.width.%]="handlerX[1] - handlerX[0]"></span>
     </div>
     <span class="right-handle"
-          [ngClass]="{'active':isMouseDown&&currentHandlerIndex==1, 'last-active':currentHandlerIndex==1}"
+          [ngClass]="{'active':isHandlerActive&&currentHandlerIndex==1, 'last-active':currentHandlerIndex==1}"
           [style.left.%]="handlerX[1]"
-          (mousedown)="mouseDownSlider($event,1)">
+          (mousedown)="setHandlerActive($event,1)"
+          (panstart)="setHandlerActive($event,1)">
       <span class="handle-tooltip">{{currentValues[1]}}</span>
     </span>
   </div>
@@ -21,3 +25,6 @@
     <span>{{initValues[1]}}</span>
   </div>
 </div>
+<p></p>
+<p>{{(isMouseEventStart)? 'It is mouse event': '...'}}</p>
+<p>{{(isTouchEventStart)? 'It is pan event': '...'}}</p>

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SecurityContext } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SecurityContext, Host } from '@angular/core';
 
 @Component({
   selector: 'npn-slider',
@@ -16,7 +16,9 @@ export class NpnSliderComponent implements OnInit {
   public initValues: number[] = [0, 0];
   public currentValues: number[] = [0, 0];
   public handlerX: number[] = [0, 0];
-  public isMouseDown = false;
+  public isHandlerActive = false;
+  public isTouchEventStart = false;
+  public isMouseEventStart = false;
   public currentHandlerIndex = 0;
 
   constructor(private el: ElementRef) {
@@ -112,25 +114,53 @@ export class NpnSliderComponent implements OnInit {
     this.sliderModel[index] = value;
   }
 
-  /*Method to disable handler movement on mouse up*/
-  @HostListener('document:mouseup') mouseUpSlider() {
-    this.isMouseDown = false;
+  /*Method to disable handler movement*/
+  /*Execute on events:
+  * on-mouseup
+  * on-panend
+  */
+  @HostListener('document:mouseup')
+  @HostListener('document:panend')
+  setHandlerActiveOff() {
+    //debugger;
+    this.isMouseEventStart = false;
+    this.isTouchEventStart = false;
+    this.isHandlerActive = false;
   }
 
-  /*Method to detect mouse down event on handler*/
-  public mouseDownSlider(event: MouseEvent, handlerIndex: number) {
+  /*Method to detect start draging handler*/
+  /*Execute on events:
+  * on-mousedown
+  * on-panstart
+  */
+  public setHandlerActive(event: any, handlerIndex: number) {
     event.preventDefault();
-    this.startClientX = event.clientX;
-    this.currentHandlerIndex = handlerIndex;
-    this.startPleft = this.sliderModel[handlerIndex];
-    this.startPRight = this.sliderModel[handlerIndex + 1];
-    this.isMouseDown = true;
+    if (event.clientX) {
+      this.startClientX = event.clientX;
+      this.isMouseEventStart = true;
+      this.isTouchEventStart = false;
+    } else if (event.deltaX) {
+      this.startClientX = event.deltaX;
+      this.isTouchEventStart = true;
+      this.isMouseEventStart = false;
+    }
+    if (this.isMouseEventStart || this.isTouchEventStart) {
+      this.currentHandlerIndex = handlerIndex;
+      this.startPleft = this.sliderModel[handlerIndex];
+      this.startPRight = this.sliderModel[handlerIndex + 1];
+      this.isHandlerActive = true;
+    }
   }
+
 
   /*Method to calculate silder handler movement */
-  public mouseSliding(event: MouseEvent) {
-    if (this.isMouseDown) {
-      let movedX = Math.round((event.clientX - this.startClientX) / this.sliderWidth * this.totalDiff);
+  /*Execute on events:
+  * on-mousemove
+  * on-panmove
+  */
+  public handlerSliding(event: any) {
+    if ((this.isMouseEventStart && event.clientX) || (this.isTouchEventStart && event.deltaX)) {
+      let movedX = Math.round(((event.clientX || event.deltaX) - this.startClientX) / this.sliderWidth * this.totalDiff);
       let nextPLeft = this.startPleft + movedX;
       let nextPRight = this.startPRight - movedX;
       if (nextPLeft >= 0 && nextPRight >= 0) {
