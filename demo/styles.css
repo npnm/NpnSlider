@@ -18,6 +18,14 @@ header {
     height: 104px;
     font-size: 14px;
 }
+header h2{
+  font-size: 24px;
+}
+@media (min-width:768px){
+  header h2{
+    font-size: 30px;
+  }
+}
 
 header h1,
 h2,
