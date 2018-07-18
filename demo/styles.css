@@ -11,15 +11,24 @@ body {
 }
 
 header {
-    padding: 25px 10px;
+    padding: 20px 10px 14px;
     border-bottom: 1px solid #ddd;
     background: #6cb350;
     color: #fff;
-    height: 104px;
     font-size: 14px;
 }
+
 header h2{
-  font-size: 24px;
+  font-size: 21px;
+}
+
+@media (min-width:576px){
+  header{
+    padding: 25px 10px;
+  }
+  header h2{
+    font-size: 24px;
+  }
 }
 @media (min-width:768px){
   header h2{
