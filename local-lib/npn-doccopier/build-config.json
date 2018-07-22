@@ -4,5 +4,5 @@
         "source":"dist\\AngularSlider",
         "destination":"docs"
     },
-    "htmlBaseUrl":"https://npnm.github.io/AngularSlider/"
+    "htmlBaseUrl":"https://npnm.github.io/NpnSlider/"
 }
