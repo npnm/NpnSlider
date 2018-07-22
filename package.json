@@ -4,7 +4,7 @@
   "description": "Angular Slide Component",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npnm/AngularSlider.git"
+    "url": "https://github.com/npnm/NpnSlider.git"
   },
   "scripts": {
     "ng": "ng",
