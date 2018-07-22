@@ -1,0 +1,19 @@
+{
+  "name": "npn-doccopier",
+  "version": "1.0.0",
+  "description": "A package to copy build from dist to doc and update index page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Nupin",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^7.0.0",
+    "jsdom": "^11.11.0"
+  },
+  "bin": {
+    "npn-doccopier": "index.js"
+  }
+}
