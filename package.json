@@ -16,7 +16,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pub2docs": "node local-lib/npn-doccopier"
+    "pub2docs": "node local-lib/npn-doccopier",
+    "sass": "sass projects/npn-slider/src/lib/npn-slider.component.scss projects/npn-slider/src/lib/npn-slider.component.css"
   },
   "private": false,
   "dependencies": {
@@ -56,6 +57,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^3.0.0-rc.2",
     "protractor": "~5.3.0",
+    "sass": "^1.10.0",
     "ts-node": "~5.0.1",
     "tsickle": ">=0.25.5",
     "tslib": "^1.7.1",

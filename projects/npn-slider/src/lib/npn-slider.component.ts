@@ -20,6 +20,7 @@ export class NpnSliderComponent implements OnInit {
   public isTouchEventStart = false;
   public isMouseEventStart = false;
   public currentHandlerIndex = 0;
+  public stepIndicatorPositions = [];
 
   constructor(private el: ElementRef) {
   }
@@ -41,6 +42,8 @@ export class NpnSliderComponent implements OnInit {
   }
 
   @Input('step') step: number = 1;
+
+  @Input() showStepIndicator: boolean = false;
 
   ngOnInit() {
     this.resetSlider();
@@ -86,7 +89,22 @@ export class NpnSliderComponent implements OnInit {
       console.warn('Ignored given step value "' + this.step + '" : and taken "1" as default step');
       this.step = 1;
     }
+    this.initializeStepIndicator();
     this.setHandlerPosition();
+  }
+
+  private initializeStepIndicator() {
+    if (this.showStepIndicator) {
+      if (this.stepIndicatorPositions.length == 0) {
+        let numOfStepIndicators = this.totalDiff / this.step;
+        let increment = this.sliderWidth / numOfStepIndicators;
+        let leftPosition = increment;
+        while (this.stepIndicatorPositions.length < numOfStepIndicators - 1) {
+          this.stepIndicatorPositions.push(+leftPosition.toFixed(2));
+          leftPosition += increment;
+        }
+      }
+    }
   }
 
   /*Method to set handler position */

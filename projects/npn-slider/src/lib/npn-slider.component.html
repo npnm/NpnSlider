@@ -10,6 +10,9 @@
       <span class="handle-tooltip">{{currentValues[0]}}</span>
     </span>
     <div class="filler">
+      <div class="step-indicators">
+            <span *ngFor="let stepPos of stepIndicatorPositions" [style.left.px]="stepPos"></span>
+      </div>
       <span [style.left.%]="handlerX[0]" [style.width.%]="handlerX[1] - handlerX[0]"></span>
     </div>
     <span class="right-handle"

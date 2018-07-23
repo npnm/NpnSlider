@@ -22,7 +22,9 @@
         <div class="form-group row">
           <label class="col-sm-4 col-form-label">Release Year:</label>
           <div class="col-sm-8">
-            <npn-slider [minMaxValues]="[2006,2020]" [selectedRangeValues]="currentValues" (onSliderValueChange)="onSliderChange1($event)">
+            <npn-slider
+              [minMaxValues]="[2006,2020]"
+              (onSliderValueChange)="onSliderChange1($event)">
             </npn-slider>
           </div>
         </div>
@@ -42,7 +44,11 @@
         <div class="form-group row">
           <label class="col-sm-4 col-form-label">Price Range(Rs.):</label>
           <div class="col-sm-8">
-            <npn-slider [minMaxValues]="[1000,5000]" [selectedRangeValues]="currentValues2" step="500" (onSliderValueChange)="onSliderChange2($event)">
+            <npn-slider
+            [minMaxValues]="[1000,5000]"
+            [selectedRangeValues]="currentValues2" step="500"
+            [showStepIndicator]="true"
+            (onSliderValueChange)="onSliderChange2($event)">
             </npn-slider>
           </div>
         </div>
