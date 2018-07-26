@@ -9,4 +9,4 @@ This node module can be executed from the main project using 'pub2docs' command
 npm run pub2docs
 ```
 
-Refer package.json at root folder for more info.
+Refer _package.json_ at root folder for more info.
