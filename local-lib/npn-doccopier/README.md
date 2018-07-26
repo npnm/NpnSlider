@@ -3,7 +3,7 @@ A custom node module to copy build folder to docs folder to help publishing the 
 
 and update base url in index.html page to support smooth page load.
 
-This node module can be executed from the main project using 'pub2docs' command
+This node module can be executed from the main project using '_pub2docs_' command
 
 ```sh
 npm run pub2docs
