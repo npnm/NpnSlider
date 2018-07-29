@@ -113,13 +113,6 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     }
   }
 
-  private resetModelValues() {
-    if (!this.isNumberArray(this.initValues) || this.initValues[0] > this.initValues[1]) {
-      return;
-    }
-    this.resetModel();
-  }
-
   /*Method to initialize variables and model values for first time  */
   private resetModel() {
     // Validation for currentValues
