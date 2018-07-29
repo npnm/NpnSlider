@@ -1,6 +1,6 @@
 # NpnSlider (A Multi Range Slider Angular Component)
 
-[NpnSlider](https://npnm.github.io/NpnSlider/) is reusable multi range slider component using Angular6
+[NpnSlider](https://npnm.github.io/NpnSlider/) is reusable multi range slider component using Angular v6.0
 
 ## Installation
 ### NPM
