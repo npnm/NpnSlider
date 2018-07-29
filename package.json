@@ -1,7 +1,7 @@
 {
-  "name": "angular-slider",
-  "version": "0.0.0",
-  "description": "Angular Slide Component",
+  "name": "npn-slider-docs",
+  "version": "0.0.1",
+  "description": "Documentation project for npn-slider component",
   "repository": {
     "type": "git",
     "url": "https://github.com/npnm/NpnSlider.git"
