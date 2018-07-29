@@ -26,16 +26,15 @@ Attributes | Description
 
 ### Sample Code
 ```ts
-  import { NpnSliderModule } from "npn-slider";
+import { NpnSliderModule } from "npn-slider";
   
-  @NgModule({
-    imports:[
-      ..
-      NpnSliderModule
-      ..
-    ]
-  
-  })
+@NgModule({
+  imports:[
+    ..
+    NpnSliderModule
+    ..
+  ]
+})
 ``` 
 ```ts
 /*Method to listen for onChange event from slider*/
