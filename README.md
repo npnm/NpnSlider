@@ -3,13 +3,13 @@
 [NpnSlider](https://npnm.github.io/NpnSlider/) is reusable multi range slider component using Angular v6.0
 
 ## Installation
-### NPM
-```sh
-npm install --save npn-slider
-```
-### Yarn
+### [Yarn](https://yarn.pm/npn-slider)
 ```sh
 yarn add npn-slider
+```
+### [NPM](https://www.npmjs.com/package/npn-slider)
+```sh
+npm install --save npn-slider
 ```
 
 ## Usage
