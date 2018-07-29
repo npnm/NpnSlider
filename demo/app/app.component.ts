@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  minValue2 = 1000;
+  maxValue2 = 2000;
+  step2 = 500;
   currentValues = [0, 0];
   currentValues2 = [2000, 3500];
 

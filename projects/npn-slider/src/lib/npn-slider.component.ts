@@ -1,20 +1,25 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SecurityContext, Host } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
+import { Utilities } from './utilities';
 
 @Component({
   selector: 'npn-slider',
   templateUrl: './npn-slider.component.html',
-  styleUrls: ['./npn-slider.component.css']
+  styleUrls: ['./npn-slider.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class NpnSliderComponent implements OnInit {
+export class NpnSliderComponent extends Utilities implements OnInit {
   private sliderModel = [0, 0, 0];
+  private step:number = 1;
   private sliderWidth = 0;
   private totalDiff = 0;
   private startClientX: number = 0;
   private startPleft = 0;
   private startPRight = 0;
+  private selectedMinMaxValues: number[] = [];
+  private sliderInitiated: boolean = false;
 
-  public initValues: number[] = [0, 0];
-  public currentValues: number[] = [0, 0];
+  public initValues: number[] = [];
+  public currentValues: number[] = [];
   public handlerX: number[] = [0, 0];
   public isHandlerActive = false;
   public isTouchEventStart = false;
@@ -23,58 +28,102 @@ export class NpnSliderComponent implements OnInit {
   public stepIndicatorPositions = [];
 
   constructor(private el: ElementRef) {
+    super();
   }
 
-  @Input('minMaxValues')
-  set setInitValues(value: number[]) {
-    if (value.length == 2) {
-      this.initValues = value;
+  @Input('min')
+  set setMinValues(value: number) {
+    if (!isNaN(value)) {
+      value = Number(value);
+      if (!this.isNullOrEmpty(this.initValues[1]) && this.initValues[1] < value) {
+        return;
+      }
+      this.initValues[0] = value;
     }
   }
 
-  @Output() onSliderValueChange = new EventEmitter<number[]>();
-
-  @Input('selectedRangeValues')
-  set setSelectedValues(value: number[]) {
-    if (value.length == 2) {
-      this.currentValues = value;
+  @Input('max')
+  set setMaxValues(value: number) {
+    if (!isNaN(value)) {
+      value = Number(value);
+      if (!this.isNullOrEmpty(this.initValues[0]) && this.initValues[0] > value) {
+        return;
+      }
+      this.initValues[1] = value;
     }
   }
 
-  @Input('step') step: number = 1;
+  @Input('minSelected')
+  set setMinSelectedValues(value: number) {
+    if (!isNaN(value) && this.isNullOrEmpty(this.selectedMinMaxValues[0])) {
+      this.selectedMinMaxValues[0] = Number(value);
+    }
+  }
+
+  @Input('maxSelected')
+  set setMaxSelectedValues(value: number) {
+    if (!isNaN(value) && this.isNullOrEmpty(this.selectedMinMaxValues[1])) {
+      this.selectedMinMaxValues[1] = Number(value);
+    }
+  }
+  @Input('step')
+  set stepValue(value: number){
+    if(!isNaN(value)){
+      this.step = Number(value);
+    }
+  }
 
   @Input() showStepIndicator: boolean = false;
 
+  @Output() onSliderValueChange = new EventEmitter<number[]>();
+
   ngOnInit() {
-    this.resetSlider();
+    this.initializeSlider();
   }
 
-  /*Method to reset entire Slider*/
-  public resetSlider() {
+  ngOnChanges(changes: SimpleChange) {
+    if (!changes['setMinSelectedValues'] && !changes['setMaxSelectedValues'] && this.sliderInitiated) {
+      this.resetModel();
+    }
+  }
+
+  /*Method to initailize entire Slider*/
+  public initializeSlider() {
     try {
       // Taking width of slider bar element.
       this.sliderWidth = this.el.nativeElement.children[0].children[0].offsetWidth;
-      this.initializeModel();
+
+      if (this.isNumberArray(this.selectedMinMaxValues) && this.selectedMinMaxValues.length === 2) {
+        this.currentValues = this.selectedMinMaxValues.slice();
+      }
+
+      if (!this.isNumberArray(this.initValues) || this.initValues[0] > this.initValues[1] || this.initValues.length < 2) {
+        // Validation for initValues: MinMaxValues
+        this.initValues = [0, 0];
+        this.updateCurrentValue([0, 0]);
+      }
+      if (this.currentValues.length < 2) {
+        this.updateCurrentValue(this.initValues);
+      }
+
+      this.resetModel();
+      this.sliderInitiated = true;
     } catch (e) {
       console.error(e);
     }
   }
 
-  /*Method to set current selected values */
-  private updateCurrentValue(arrayValue: number[]) {
-    this.currentValues[0] = arrayValue[0];
-    this.currentValues[1] = arrayValue[1];
-    this.onSliderValueChange.emit(this.currentValues);
+  private resetModelValues() {
+    if (!this.isNumberArray(this.initValues) || this.initValues[0] > this.initValues[1]) {
+      return;
+    }
+    this.resetModel();
   }
 
   /*Method to initialize variables and model values for first time  */
-  private initializeModel() {
-    if (this.initValues[0] > this.initValues[1]) {
-      // Validation for initValues: MinMaxValues
-      this.initValues = [0, 0];
-      this.updateCurrentValue([0, 0]);
-    } else if (this.currentValues[0] < this.initValues[0] || this.currentValues[1] > this.initValues[1]) {
-      // Validation for currentValues: SelectedRangeValues
+  private resetModel() {
+    // Validation for currentValues
+    if (this.currentValues[0] < this.initValues[0] || this.currentValues[1] > this.initValues[1]) {
       this.updateCurrentValue(this.initValues);
     }
     // Setting the model values
@@ -83,11 +132,18 @@ export class NpnSliderComponent implements OnInit {
       this.currentValues[1] - this.currentValues[0],
       this.initValues[1] - this.currentValues[1]
     ];
+
     this.totalDiff = this.sliderModel.reduce((prevValue, curValue) => prevValue + curValue, 0);
+
+    // Validation for slider step
     if (this.totalDiff % this.step != 0) {
-      // Validation for slider step
-      console.warn('Ignored given step value "' + this.step + '" : and taken "1" as default step');
-      this.step = 1;
+      let newStep = this.findNextValidStepValue(this.totalDiff, this.step);
+      console.warn('Invalid step value "' + this.step + '" : and took "' + newStep + '" as default step');
+      this.step = newStep;
+    }
+    if(this.sliderWidth / (this.totalDiff / this.step) < 10){
+      console.error(`'step' value is too small compared to min & max value difference and slider width.
+        Slider might not work properly!. Provide slight large value for 'step'`);
     }
     this.initializeStepIndicator();
     this.setHandlerPosition();
@@ -95,8 +151,9 @@ export class NpnSliderComponent implements OnInit {
 
   private initializeStepIndicator() {
     if (this.showStepIndicator) {
-      if (this.stepIndicatorPositions.length == 0) {
-        let numOfStepIndicators = this.totalDiff / this.step;
+      this.stepIndicatorPositions = [];
+      let numOfStepIndicators = this.totalDiff / this.step;
+      if (this.sliderWidth / numOfStepIndicators >= 10) {
         let increment = this.sliderWidth / numOfStepIndicators;
         let leftPosition = increment;
         while (this.stepIndicatorPositions.length < numOfStepIndicators - 1) {
@@ -107,16 +164,21 @@ export class NpnSliderComponent implements OnInit {
     }
   }
 
+  /*Method to set current selected values */
+  private updateCurrentValue(arrayValue: number[]) {
+    this.currentValues[0] = arrayValue[0];
+    this.currentValues[1] = arrayValue[1];
+    this.onSliderValueChange.emit(this.currentValues);
+  }
+
   /*Method to set handler position */
   private setHandlerPosition() {
     let runningTotal = 0;
-    //console.log('model value on move: ' + this.sliderModel);
     // Updating selected values : current values
     this.updateCurrentValue([
       this.initValues[0] + this.sliderModel[0],
       this.initValues[1] - this.sliderModel[2]
     ]);
-    //console.log(this.sliderModel);
     /*Setting handler position */
     for (let i = 0, len = this.sliderModel.length - 1; i < len; i++) {
       runningTotal += this.sliderModel[i];
