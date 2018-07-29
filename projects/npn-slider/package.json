@@ -1,7 +1,8 @@
 {
   "name": "npn-slider",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "private": false,
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^6.0.3",
     "@angular/core": "^6.0.3",
