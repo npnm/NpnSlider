@@ -11,6 +11,6 @@ npm install --save npn-slider
 ## Usage
 
 ```html
-<npn-slider [minMaxValues]="[2006,2020]" (onSliderValueChange)="onSliderChange($event)"></npn-slider>
+<npn-slider [min]="2006" [max]="2020" (onSliderValueChange)="onSliderChange($event)"></npn-slider>
 ```
 
