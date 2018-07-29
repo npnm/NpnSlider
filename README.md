@@ -11,6 +11,26 @@ npm install --save npn-slider
 ## Usage
 
 ```html
-<npn-slider [min]="2006" [max]="2020" (onSliderValueChange)="onSliderChange($event)"></npn-slider>
+<npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"></npn-slider>
+```
+
+```ts
+  import { NpnSliderModule } from "npn-slider";
+  
+  @NgModule({
+    imports:[
+      ..
+      NpnSliderModule
+      ..
+    ]
+  
+  })
+``` 
+
+```ts
+/*Method to listen for onChange event from slider*/
+onSliderChange(selectedValues: number[]) {
+    this._currentValues = selectedValues;
+}
 ```
 
