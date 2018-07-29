@@ -75,7 +75,7 @@ export class NpnSliderComponent extends Utilities implements OnInit {
 
   @Input() showStepIndicator: boolean = false;
 
-  @Output() onSliderValueChange = new EventEmitter<number[]>();
+  @Output() onChange = new EventEmitter<number[]>();
 
   ngOnInit() {
     this.initializeSlider();
@@ -161,7 +161,7 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   private updateCurrentValue(arrayValue: number[]) {
     this.currentValues[0] = arrayValue[0];
     this.currentValues[1] = arrayValue[1];
-    this.onSliderValueChange.emit(this.currentValues);
+    this.onChange.emit(this.currentValues);
   }
 
   /*Method to set handler position */

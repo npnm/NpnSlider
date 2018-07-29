@@ -23,7 +23,7 @@
           <label class="col-sm-4 col-form-label">Release Year:</label>
           <div class="col-sm-8">
             <npn-slider [min]="2006" [max]="2020" [showStepIndicator]="false"
-              (onSliderValueChange)="onSliderChange1($event)">
+              (onChange)="onSliderChange1($event)">
             </npn-slider>
           </div>
         </div>
@@ -46,13 +46,13 @@
             <npn-slider [min]="minValue2" [max]="5000"
             [minSelected]="currentValues2[0]" [maxSelected]="currentValues2[1]" [step]="step2"
             [showStepIndicator]="true"
-            (onSliderValueChange)="onSliderChange2($event)">
+            (onChange)="onSliderChange2($event)">
             </npn-slider>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-12">
-            <input type="text" [(ngModel)]="minValue2"name="minValue2"/>
+            <!--<input type="text" [(ngModel)]="minValue2"name="minValue2"/>-->
             <p>SelectedRange: [{{currentValues2[0]}} - {{currentValues2[1]}}]</p>
             <p>Step: {{step2}}</p>
           </div>
