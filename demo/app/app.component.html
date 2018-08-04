@@ -60,4 +60,27 @@
       </form>
     </div>
   </div>
+  <h4 style="margin-top:15px;">Example3</h4>
+  <div class="well">
+    <div class="demo">
+      <form>
+        <div class="form-group row">
+          <label class="col-sm-4 col-form-label">Price Range(Rs.):</label>
+          <div class="col-sm-8">
+            <npn-slider [min]="100" [max]="200" [step]="10"
+            [maxSelected]="190"
+            [showStepIndicator]="true" disabled="disabled">
+            </npn-slider>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <p>Selected Values: [ _ , 190]</p>
+            <p>Step: 10</p>
+            <p>ShowStepIndicator: True</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

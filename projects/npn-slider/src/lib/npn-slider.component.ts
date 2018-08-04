@@ -4,22 +4,25 @@ import { Utilities } from './utilities';
 @Component({
   selector: 'npn-slider',
   templateUrl: './npn-slider.component.html',
-  styleUrls: ['./npn-slider.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./npn-slider.component.css']
 })
 export class NpnSliderComponent extends Utilities implements OnInit {
   private sliderModel = [0, 0, 0];
-  private step:number = 1;
+  private step: number = 1;
   private sliderWidth = 0;
   private totalDiff = 0;
   private startClientX: number = 0;
   private startPleft = 0;
   private startPRight = 0;
-  private selectedMinMaxValues: number[] = [];
+  private minValue: number;
+  private maxValue: number;
+  private minSelected: number;
+  private maxSelected: number;
   private sliderInitiated: boolean = false;
+  private isDisabled = false;
 
   public initValues: number[] = [];
-  public currentValues: number[] = [];
+  public currentValues: number[] = [0, 0];
   public handlerX: number[] = [0, 0];
   public isHandlerActive = false;
   public isTouchEventStart = false;
@@ -34,46 +37,43 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   @Input('min')
   set setMinValues(value: number) {
     if (!isNaN(value)) {
-      value = Number(value);
-      if (!this.isNullOrEmpty(this.initValues[1]) && this.initValues[1] < value) {
-        return;
-      }
-      this.initValues[0] = value;
+      this.minValue = Number(value);
     }
   }
 
   @Input('max')
   set setMaxValues(value: number) {
     if (!isNaN(value)) {
-      value = Number(value);
-      if (!this.isNullOrEmpty(this.initValues[0]) && this.initValues[0] > value) {
-        return;
-      }
-      this.initValues[1] = value;
+      this.maxValue = Number(value);
     }
   }
 
   @Input('minSelected')
   set setMinSelectedValues(value: number) {
-    if (!isNaN(value) && this.isNullOrEmpty(this.selectedMinMaxValues[0])) {
-      this.selectedMinMaxValues[0] = Number(value);
+    if (!isNaN(value) && this.isNullOrEmpty(this.minSelected)) {
+      this.minSelected = Number(value);
     }
   }
 
   @Input('maxSelected')
   set setMaxSelectedValues(value: number) {
-    if (!isNaN(value) && this.isNullOrEmpty(this.selectedMinMaxValues[1])) {
-      this.selectedMinMaxValues[1] = Number(value);
+    if (!isNaN(value) && this.isNullOrEmpty(this.maxSelected)) {
+      this.maxSelected = Number(value);
     }
   }
   @Input('step')
-  set stepValue(value: number){
-    if(!isNaN(value)){
+  set stepValue(value: number) {
+    if (!isNaN(value)) {
       this.step = Number(value);
     }
   }
 
   @Input() showStepIndicator: boolean = false;
+
+  @Input('disabled')
+  set setDisabled(value: string) {
+    this.isDisabled = (value === 'true' || value == 'disabled') ? true : false;
+  }
 
   @Output() onChange = new EventEmitter<number[]>();
 
@@ -92,20 +92,6 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     try {
       // Taking width of slider bar element.
       this.sliderWidth = this.el.nativeElement.children[0].children[0].offsetWidth;
-
-      if (this.isNumberArray(this.selectedMinMaxValues) && this.selectedMinMaxValues.length === 2) {
-        this.currentValues = this.selectedMinMaxValues.slice();
-      }
-
-      if (!this.isNumberArray(this.initValues) || this.initValues[0] > this.initValues[1] || this.initValues.length < 2) {
-        // Validation for initValues: MinMaxValues
-        this.initValues = [0, 0];
-        this.updateCurrentValue([0, 0]);
-      }
-      if (this.currentValues.length < 2) {
-        this.updateCurrentValue(this.initValues);
-      }
-
       this.resetModel();
       this.sliderInitiated = true;
     } catch (e) {
@@ -113,12 +99,9 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     }
   }
 
-  /*Method to initialize variables and model values for first time  */
+  /*Method to initialize variables and model values */
   private resetModel() {
-    // Validation for currentValues
-    if (this.currentValues[0] < this.initValues[0] || this.currentValues[1] > this.initValues[1]) {
-      this.updateCurrentValue(this.initValues);
-    }
+    this.validateSliderValues();
     // Setting the model values
     this.sliderModel = [
       this.currentValues[0] - this.initValues[0],
@@ -134,7 +117,7 @@ export class NpnSliderComponent extends Utilities implements OnInit {
       console.warn('Invalid step value "' + this.step + '" : and took "' + newStep + '" as default step');
       this.step = newStep;
     }
-    if(this.sliderWidth / (this.totalDiff / this.step) < 10){
+    if (this.sliderWidth / (this.totalDiff / this.step) < 10) {
       console.error(`'step' value is too small compared to min & max value difference and slider width.
         Slider might not work properly!. Provide slight large value for 'step'`);
     }
@@ -142,6 +125,37 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     this.setHandlerPosition();
   }
 
+  /*Method to do validation of init and seleted range values*/
+  private validateSliderValues() {
+    if (this.isNullOrEmpty(this.minValue) || this.isNullOrEmpty(this.maxValue)) {
+      this.updateInitValues([0, 0]);
+      this.updateCurrentValue([0, 0], true);
+    } else if (this.minValue > this.maxValue) {
+      this.updateInitValues([0, 0]);
+      this.updateCurrentValue([0, 0], true);
+    } else {
+      this.initValues = [this.minValue, this.maxValue];
+      /*
+      * Validation for Selected range values
+      */
+      this.minSelected = this.isNullOrEmpty(this.minSelected) ? 0 : this.minSelected;
+      this.maxSelected = this.isNullOrEmpty(this.maxSelected) ? 0 : this.maxSelected;
+
+      if (this.minSelected < this.minValue || this.minSelected > this.maxValue) {
+        this.minSelected = this.minValue;
+      }
+      if (this.maxSelected < this.minValue || this.maxSelected > this.maxValue) {
+        this.maxSelected = this.maxValue;
+      }
+      if (this.minSelected > this.maxSelected) {
+        this.minSelected = this.minValue;
+        this.maxSelected = this.maxValue;
+      }
+      this.updateCurrentValue([this.minSelected, this.maxSelected], true);
+    }
+  }
+
+  /*Method to add step inidicator to slider */
   private initializeStepIndicator() {
     if (this.showStepIndicator) {
       this.stepIndicatorPositions = [];
@@ -158,10 +172,18 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   }
 
   /*Method to set current selected values */
-  private updateCurrentValue(arrayValue: number[]) {
-    this.currentValues[0] = arrayValue[0];
-    this.currentValues[1] = arrayValue[1];
-    this.onChange.emit(this.currentValues);
+  private updateCurrentValue(arrayValue: number[], privateChange: boolean = false) {
+    this.minSelected = this.currentValues[0] = arrayValue[0];
+    this.maxSelected = this.currentValues[1] = arrayValue[1];
+    if (!privateChange) {
+      this.onChange.emit(this.currentValues);
+    }
+  }
+
+  /*Method to set current selected values */
+  private updateInitValues(arrayValue: number[]) {
+    this.minValue = this.initValues[0] = arrayValue[0];
+    this.maxValue = this.initValues[1] = arrayValue[1];
   }
 
   /*Method to set handler position */
@@ -208,20 +230,22 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   */
   public setHandlerActive(event: any, handlerIndex: number) {
     event.preventDefault();
-    if (event.clientX) {
-      this.startClientX = event.clientX;
-      this.isMouseEventStart = true;
-      this.isTouchEventStart = false;
-    } else if (event.deltaX) {
-      this.startClientX = event.deltaX;
-      this.isTouchEventStart = true;
-      this.isMouseEventStart = false;
-    }
-    if (this.isMouseEventStart || this.isTouchEventStart) {
-      this.currentHandlerIndex = handlerIndex;
-      this.startPleft = this.sliderModel[handlerIndex];
-      this.startPRight = this.sliderModel[handlerIndex + 1];
-      this.isHandlerActive = true;
+    if (!this.isDisabled) {
+      if (event.clientX) {
+        this.startClientX = event.clientX;
+        this.isMouseEventStart = true;
+        this.isTouchEventStart = false;
+      } else if (event.deltaX) {
+        this.startClientX = event.deltaX;
+        this.isTouchEventStart = true;
+        this.isMouseEventStart = false;
+      }
+      if (this.isMouseEventStart || this.isTouchEventStart) {
+        this.currentHandlerIndex = handlerIndex;
+        this.startPleft = this.sliderModel[handlerIndex];
+        this.startPRight = this.sliderModel[handlerIndex + 1];
+        this.isHandlerActive = true;
+      }
     }
   }
 

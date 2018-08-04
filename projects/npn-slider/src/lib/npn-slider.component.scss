@@ -107,7 +107,7 @@ $tooltip-background-color: lighten($color: $main-color, $amount: 35%);
           height: 10px;
           background: $main-color;
           position: absolute;
-          left:0;
+          left: 0;
         }
       }
     }
@@ -125,5 +125,18 @@ $tooltip-background-color: lighten($color: $main-color, $amount: 35%);
   }
   .values span:last-child {
     float: right;
+  }
+  &.disabled {
+    opacity: 0.4;
+    .bar {
+      box-shadow: none !important;
+      &>span.left-handle,
+      &>span.right-handle {
+        cursor: default;
+        & .handle-tooltip {
+          display: none;
+        }
+      }
+    }
   }
 }

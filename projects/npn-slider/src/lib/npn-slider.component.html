@@ -1,5 +1,5 @@
 <!--npn-slider template-->
-<div class="slider">
+<div class="slider" [class.disabled]="isDisabled">
   <div class="bar" (mousemove)="handlerSliding($event)"
                    (panmove)="handlerSliding($event)">
     <span class="left-handle"

@@ -118,5 +118,17 @@
 .slider .values span:last-child {
   float: right;
 }
+.slider.disabled {
+  opacity: 0.4;
+}
+.slider.disabled .bar {
+  box-shadow: none !important;
+}
+.slider.disabled .bar > span.left-handle, .slider.disabled .bar > span.right-handle {
+  cursor: default;
+}
+.slider.disabled .bar > span.left-handle .handle-tooltip, .slider.disabled .bar > span.right-handle .handle-tooltip {
+  display: none;
+}
 
 /*# sourceMappingURL=npn-slider.component.css.map */
