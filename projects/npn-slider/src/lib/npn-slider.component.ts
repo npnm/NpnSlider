@@ -19,7 +19,6 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   private minSelected: number;
   private maxSelected: number;
   private sliderInitiated: boolean = false;
-  private isDisabled = false;
 
   public initValues: number[] = [];
   public currentValues: number[] = [0, 0];
@@ -29,6 +28,7 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   public isMouseEventStart = false;
   public currentHandlerIndex = 0;
   public stepIndicatorPositions = [];
+  public isDisabled = false;
 
   constructor(private el: ElementRef) {
     super();

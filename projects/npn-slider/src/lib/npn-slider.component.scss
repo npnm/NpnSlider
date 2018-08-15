@@ -132,7 +132,7 @@ $tooltip-background-color: lighten($color: $main-color, $amount: 35%);
       box-shadow: none !important;
       &>span.left-handle,
       &>span.right-handle {
-        cursor: default;
+        cursor: not-allowed;
         & .handle-tooltip {
           display: none;
         }
