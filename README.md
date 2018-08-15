@@ -25,6 +25,7 @@ Attributes | Description
 @Input() <br> showStepIndicator: boolean | Whether the step indicator should display or not
 @Input() <br> minSelected: number | The selected value for slider's left handler
 @Input() <br> maxSelected: number | The selected value for slider's right handler
+@Input() <br> disabled: string | To disable the slider. Valid values: _'true'_ or _'disabled'_
 @Output() <br> onChange: EventEmitter<number[]>() | The event will be fired on change of selected range of values. Returns: Selected range of values as a array[]
 
 ### Sample Code
