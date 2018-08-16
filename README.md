@@ -28,7 +28,8 @@ Attributes | Description
 @Input() <br> disabled: string | To disable the slider. Valid values: _'true'_ or _'disabled'_
 @Output() <br> onChange: EventEmitter<number[]>() | The event will be fired on change of selected range of values. Returns: Selected range of values as a array[]
 
-### Sample Code
+### Example and Sample Code
+a) **Import _'NpnSliderModule'_ in your app module**
 ```ts
 import { NpnSliderModule } from "npn-slider";
   
@@ -40,10 +41,15 @@ import { NpnSliderModule } from "npn-slider";
   ]
 })
 ``` 
+b) **Add _'npn-slider'_ in your component html**
+```html
+<npn-slider [min]="1000" [max]="5000" (onChange)="onSliderChange($event)" [step]="500" [showStepIndicator]="true"></npn-slider>
+```
+c) **Add a method in your component class to listen for onChange event from slider** 
 ```ts
 /*Method to listen for onChange event from slider*/
 onSliderChange(selectedValues: number[]) {
     this._currentValues = selectedValues;
 }
 ```
-
+d) **You done. Run your app. cheers!**
