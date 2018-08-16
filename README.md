@@ -26,7 +26,7 @@ Attributes | Description
 @Input() <br> **minSelected**: number | The selected value for slider's left handler
 @Input() <br> **maxSelected**: number | The selected value for slider's right handler
 @Input() <br> **disabled**: string | To disable the slider. Valid values: _'true'_ or _'disabled'_
-@Output() <br> **onChange**: EventEmitter<number[]>() | The event will be fired on change of selected range of values.<br>Returns: Selected range of values as an array[]
+@Output() <br> **onChange**: EventEmitter<number[]>() | The event will be fired on change of selected range of values.<br>_Returns: Selected range of values as an array[]_
 
 ### Example and Sample Code
 a) **Import _'NpnSliderModule'_ in your app module**
