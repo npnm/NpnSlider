@@ -1,6 +1,6 @@
 {
   "name": "npn-slider",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "license": "MIT",
   "keywords": ["multi-range-slider","angular-slider", "slider", "slider-component", "angular-component", "angular6"],
