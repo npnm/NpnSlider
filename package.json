@@ -2,7 +2,6 @@
   "name": "npn-slider-docs",
   "version": "0.0.2",
   "description": "Documentation project for npn-slider component",
-  "keywords": ["multi-range-slider","angular-slider", "slider", "slider-component", "angular-component", "angular6"],
   "private": false,
   "scripts": {
     "ng": "ng",
@@ -17,6 +16,14 @@
     "pub2docs": "node local-lib/npn-doccopier",
     "sass": "sass projects/npn-slider/src/lib/npn-slider.component.scss projects/npn-slider/src/lib/npn-slider.component.css"
   },
+  "keywords": [
+    "multi-range-slider",
+    "angular-slider",
+    "slider",
+    "slider-component",
+    "angular-component",
+    "angular6"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/npnm/NpnSlider.git"
