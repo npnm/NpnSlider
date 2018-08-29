@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, HostListener, SimpleChange, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter,
+          ElementRef, OnInit, HostListener, SimpleChanges, OnChanges } from '@angular/core';
 import { Utilities } from './utilities';
 
 @Component({
@@ -6,19 +7,19 @@ import { Utilities } from './utilities';
   templateUrl: './npn-slider.component.html',
   styleUrls: ['./npn-slider.component.css']
 })
-export class NpnSliderComponent extends Utilities implements OnInit {
+export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   private sliderModel = [0, 0, 0];
-  private step: number = 1;
+  private step = 1;
   private sliderWidth = 0;
   private totalDiff = 0;
-  private startClientX: number = 0;
+  private startClientX = 0;
   private startPleft = 0;
   private startPRight = 0;
   private minValue: number;
   private maxValue: number;
   private minSelected: number;
   private maxSelected: number;
-  private sliderInitiated: boolean = false;
+  private sliderInitiated = false;
 
   public initValues: number[] = [];
   public currentValues: number[] = [0, 0];
@@ -68,11 +69,11 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     }
   }
 
-  @Input() showStepIndicator: boolean = false;
+  @Input() showStepIndicator = false;
 
   @Input('disabled')
   set setDisabled(value: string) {
-    this.isDisabled = (value === 'true' || value == 'disabled') ? true : false;
+    this.isDisabled = (value === 'true' || value === 'disabled') ? true : false;
   }
 
   @Output() onChange = new EventEmitter<number[]>();
@@ -81,7 +82,7 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     this.initializeSlider();
   }
 
-  ngOnChanges(changes: SimpleChange) {
+  ngOnChanges(changes: SimpleChanges) {
     if (!changes['setMinSelectedValues'] && !changes['setMaxSelectedValues'] && this.sliderInitiated) {
       this.resetModel();
     }
@@ -112,8 +113,8 @@ export class NpnSliderComponent extends Utilities implements OnInit {
     this.totalDiff = this.sliderModel.reduce((prevValue, curValue) => prevValue + curValue, 0);
 
     // Validation for slider step
-    if (this.totalDiff % this.step != 0) {
-      let newStep = this.findNextValidStepValue(this.totalDiff, this.step);
+    if (this.totalDiff % this.step !== 0) {
+      const newStep = this.findNextValidStepValue(this.totalDiff, this.step);
       console.warn('Invalid step value "' + this.step + '" : and took "' + newStep + '" as default step');
       this.step = newStep;
     }
@@ -159,9 +160,9 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   private initializeStepIndicator() {
     if (this.showStepIndicator) {
       this.stepIndicatorPositions = [];
-      let numOfStepIndicators = this.totalDiff / this.step;
+      const numOfStepIndicators = this.totalDiff / this.step;
       if (this.sliderWidth / numOfStepIndicators >= 10) {
-        let increment = this.sliderWidth / numOfStepIndicators;
+        const increment = this.sliderWidth / numOfStepIndicators;
         let leftPosition = increment;
         while (this.stepIndicatorPositions.length < numOfStepIndicators - 1) {
           this.stepIndicatorPositions.push(+leftPosition.toFixed(2));
@@ -217,7 +218,6 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   @HostListener('document:mouseup')
   @HostListener('document:panend')
   setHandlerActiveOff() {
-    //debugger;
     this.isMouseEventStart = false;
     this.isTouchEventStart = false;
     this.isHandlerActive = false;
@@ -257,9 +257,9 @@ export class NpnSliderComponent extends Utilities implements OnInit {
   */
   public handlerSliding(event: any) {
     if ((this.isMouseEventStart && event.clientX) || (this.isTouchEventStart && event.deltaX)) {
-      let movedX = Math.round(((event.clientX || event.deltaX) - this.startClientX) / this.sliderWidth * this.totalDiff);
-      let nextPLeft = this.startPleft + movedX;
-      let nextPRight = this.startPRight - movedX;
+      const movedX = Math.round(((event.clientX || event.deltaX) - this.startClientX) / this.sliderWidth * this.totalDiff);
+      const nextPLeft = this.startPleft + movedX;
+      const nextPRight = this.startPRight - movedX;
       if (nextPLeft >= 0 && nextPRight >= 0) {
         this.setModelValue(this.currentHandlerIndex, nextPLeft);
         this.setModelValue(this.currentHandlerIndex + 1, nextPRight);

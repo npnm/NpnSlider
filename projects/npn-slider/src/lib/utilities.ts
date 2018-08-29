@@ -10,11 +10,11 @@ export class Utilities {
     return obj === undefined || obj === null || obj === '';
   }
   public findNextValidStepValue(n: number, step: number): number {
-    let divisors: number[] = [];
-    let sqrtNum = Math.sqrt(n);
+    const divisors: number[] = [];
+    const sqrtNum = Math.sqrt(n);
     for (let i = 0; i < sqrtNum; i++) {
-      if (n % i == 0) {
-        if ((n / i) == i) {
+      if (n % i === 0) {
+        if ((n / i) === i) {
           divisors.push(i);
         } else {
           divisors.push(i);
@@ -39,7 +39,6 @@ export class Utilities {
         break;
       }
     }
-    console.log(divisors);
     return step;
   }
 }
