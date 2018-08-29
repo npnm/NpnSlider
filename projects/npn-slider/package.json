@@ -1,13 +1,23 @@
 {
   "name": "npn-slider",
-  "version": "1.1.1",
-  "private": false,
-  "license": "MIT",
-  "keywords": ["multi-range-slider","angular-slider", "slider", "slider-component", "angular-component", "angular6"],
+  "description": "A multi range slider component using Angular v6.0",
+  "version": "1.1.2",
   "peerDependencies": {
     "@angular/common": "^6.0.3",
     "@angular/core": "^6.0.3",
     "@angular/platform-browser": "^6.0.3",
     "hammerjs": "^2.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npnm/NpnSlider.git"
+  },
+  "keywords": ["multi-range-slider","angular-slider", "slider", "slider-component", "angular-component", "angular6"],
+  "private": false,
+  "license": "MIT",
+  "author": "npnm",
+  "homepage": "https://npnm.github.io/NpnSlider",
+  "bugs": {
+    "url": "https://github.com/npnm/NpnSlider/issues"
   }
 }
