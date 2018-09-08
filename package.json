@@ -11,6 +11,7 @@
     "pack-lib": "cd dist/npn-slider && npm pack",
     "build-pack-lib": "npm run build-lib && npm run pack-lib",
     "test": "ng test",
+    "test-lib": "ng test \"npn-slider\"",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pub2docs": "node local-lib/npn-doccopier",
