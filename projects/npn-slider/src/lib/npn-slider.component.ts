@@ -3,6 +3,7 @@ import {
   ElementRef, OnInit, HostListener, SimpleChanges, OnChanges
 } from '@angular/core';
 import { Utilities } from './utilities';
+import { SliderHandlerEnum } from './slider-handler.enum';
 
 @Component({
   selector: 'npn-slider',
@@ -32,6 +33,10 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   public currentHandlerIndex = 0;
   public stepIndicatorPositions = [];
   public isDisabled = false;
+  public hideTooltip = false;
+  public hideValues = false;
+
+  public handlerIndex = SliderHandlerEnum;
 
   constructor(private el: ElementRef) {
     super();
@@ -72,10 +77,19 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   }
 
   @Input() showStepIndicator = false;
+  @Input() multiRange = true;
+  @Input("hide-tooltip")
+  set setHideTooltip(value: boolean) {
+    this.hideTooltip = this.toBoolean(value);
+  }
+  @Input("hide-values")
+  set setHideValues(value: boolean) {
+    this.hideValues = this.toBoolean(value);
+  }
 
   @Input('disabled')
   set setDisabled(value: string) {
-    this.isDisabled = (value === 'true' || value === 'disabled') ? true : false;
+    this.isDisabled = this.toBoolean(value, "disabled");
   }
 
   @Output() onChange = new EventEmitter<number[]>();
@@ -181,7 +195,7 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
     this.minSelected = this.currentValues[0] = arrayValue[0];
     this.maxSelected = this.currentValues[1] = arrayValue[1];
     if (!privateChange) {
-      this.onChange.emit(this.currentValues);
+      this.onChange.emit((this.multiRange) ? this.currentValues : [this.currentValues[0]]);
     }
   }
 
@@ -235,11 +249,12 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   public setHandlerActive(event: any, handlerIndex: number) {
     event.preventDefault();
     if (!this.isDisabled) {
-      if (event.clientX) {
+
+      if (!this.isNullOrEmpty(event.clientX)) {
         this.startClientX = event.clientX;
         this.isMouseEventStart = true;
         this.isTouchEventStart = false;
-      } else if (event.deltaX) {
+      } else if (!this.isNullOrEmpty(event.deltaX)) {
         this.startClientX = event.deltaX;
         this.isTouchEventStart = true;
         this.isMouseEventStart = false;

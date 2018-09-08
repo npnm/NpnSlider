@@ -6,8 +6,11 @@ export class Utilities {
   public isNumberArray(arr: number[]): boolean {
     return (arr && arr.length && arr.filter((value) => !isNaN(value)).length === arr.length) ? true : false;
   }
-  public isNullOrEmpty(obj: any) {
+  public isNullOrEmpty(obj: any):boolean {
     return obj === undefined || obj === null || obj === '';
+  }
+  public toBoolean(obj: any, ...allowedValues): boolean {
+    return (obj === '' || obj === 'true' || allowedValues.includes(obj)) ? true : false;
   }
   public findNextValidStepValue(n: number, step: number): number {
     const divisorsSet1: number[] = [];
