@@ -23,9 +23,13 @@
               "demo/assets"
             ],
             "styles": [
+              "node_modules/prismjs/themes/prism.css",
               "demo/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js"
+            ]
           },
           "configurations": {
             "production": {

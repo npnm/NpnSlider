@@ -12,73 +12,75 @@
   </div>
 </header>
 <div class="container demo-container">
-  <p>NpnSlider is multi range slider component using <em>Angular v6.0</em>. A range of values can be selected at a time.
+  <p>NpnSlider is a multi range slider component using <em>Angular v6.0</em>. It can be used either as a multi range or single range slider. By default, it is a multi range.
   </p>
-  <h4 style="margin-top:15px;">Example1</h4>
-  <div class="well">
-    <div class="demo">
-      <form>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Release Year:</label>
-          <div class="col-sm-8">
-            <npn-slider [min]="2006" [max]="2020" [showStepIndicator]="false"
-              (onChange)="onSliderChange1($event)">
-            </npn-slider>
-          </div>
+  <div class="examples">
+    <h4>Basic Slider <small><i>(Multi Range)</i></small></h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange1($event)">
+        </npn-slider>
+      </div>
+      <div class="code-snippet">
+        <div markdown ngPreserveWhitespaces>
+          ```html
+          &lt;npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"&gt;&lt;/npn-slider&gt;
+          ```
         </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <p>SelectedRange: [{{currentValues[0]}} - {{currentValues[1]}}]</p>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-  <h4 style="margin-top:15px;">Example2</h4>
-  <div class="well">
-    <div class="demo">
-      <form>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Price Range(Rs.):</label>
-          <div class="col-sm-8">
-            <npn-slider [min]="minValue2" [max]="5000"
-            [minSelected]="currentValues2[0]" [maxSelected]="currentValues2[1]" [step]="step2"
-            [showStepIndicator]="true"
-            (onChange)="onSliderChange2($event)">
-            </npn-slider>
-          </div>
+  <div class="examples">
+    <h4>Single Range Slider</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010">
+        </npn-slider>
+      </div>
+      <div class="code-snippet">
+        <div markdown ngPreserveWhitespaces>
+          ```html
+          &lt;npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010"&gt;&lt;/npn-slider&gt;
+          ```
         </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <!--<input type="text" [(ngModel)]="minValue2"name="minValue2"/>-->
-            <p>SelectedRange: [{{currentValues2[0]}} - {{currentValues2[1]}}]</p>
-            <p>Step: {{step2}}</p>
-            <p>ShowStepIndicator: True</p>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-  <h4 style="margin-top:15px;">Example3</h4>
-  <div class="well">
-    <div class="demo">
-      <form>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Price Range(Rs.):</label>
-          <div class="col-sm-8">
-            <npn-slider [min]="100" [max]="200" [step]="10"
-            [maxSelected]="190"
-            [showStepIndicator]="true" disabled="disabled">
-            </npn-slider>
-          </div>
+  <div class="examples">
+    <h4>Multi Range Slider - with preselected values</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="1000" [max]="5000" [minSelected]="2000" [maxSelected]="4000" [step]="500"
+          [showStepIndicator]="true">
+        </npn-slider>
+      </div>
+      <div class="code-snippet">
+        <div markdown ngPreserveWhitespaces>
+          ```html
+          &lt;npn-slider [min]="1000" [max]="5000"
+                      [minSelected]="2000" [maxSelected]="4000"
+                      [step]="500"
+                      [showStepIndicator]="true"&gt;
+          &lt;/npn-slider&gt;
+          ```
         </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <p>Selected Values: [100 - 190]</p>
-            <p>Disabled: True</p>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
+  <div class="examples">
+      <h4>Disabled Slider</h4>
+      <div class="well">
+        <div class="well-body">
+          <npn-slider [min]="1000" [max]="5000" disabled>
+          </npn-slider>
+        </div>
+        <div class="code-snippet">
+          <div markdown ngPreserveWhitespaces>
+            ```html
+            &lt;npn-slider [min]="1000" [max]="5000" disabled&gt;&lt;/npn-slider&gt;
+            ```
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
