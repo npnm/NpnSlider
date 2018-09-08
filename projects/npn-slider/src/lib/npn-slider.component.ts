@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter,
-          ElementRef, OnInit, HostListener, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  ElementRef, OnInit, HostListener, SimpleChanges, OnChanges
+} from '@angular/core';
 import { Utilities } from './utilities';
 
 @Component({
@@ -159,7 +161,7 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   /*Method to add step inidicator to slider */
   private initializeStepIndicator() {
     if (this.showStepIndicator) {
-      this.stepIndicatorPositions = [];
+      this.stepIndicatorPositions.length = 0;
       const numOfStepIndicators = this.totalDiff / this.step;
       if (this.sliderWidth / numOfStepIndicators >= 10) {
         const increment = this.sliderWidth / numOfStepIndicators;
@@ -169,6 +171,8 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
           leftPosition += increment;
         }
       }
+    } else {
+      this.stepIndicatorPositions.length = 0;
     }
   }
 
