@@ -1,36 +1,39 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';/**/
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
+/**/
 html,
 body {
-    height: 100%;
-    font-size:16px;
+  height: 100%;
+  font-size: 16px;
 }
 
-.container-fluid{
-    height: 100%;
+.container-fluid {
+  height: 100%;
 }
 
 header {
-    padding: 20px 10px 14px;
-    background: #71b357;
-    color: #fff;
-    font-size: 14px;
+  padding: 20px 10px 14px;
+  background: #71b357;
+  color: #fff;
+  font-size: 14px;
 }
 
-header h2{
+header h2 {
   font-size: 21px;
 }
 
-@media (min-width:576px){
-  header{
+@media (min-width:576px) {
+  header {
     padding: 25px 10px;
   }
-  header h2{
+
+  header h2 {
     font-size: 24px;
   }
 }
-@media (min-width:768px){
-  header h2{
+
+@media (min-width:768px) {
+  header h2 {
     font-size: 30px;
   }
 }
@@ -38,57 +41,86 @@ header h2{
 header h1,
 h2,
 h3 {
-    margin: 0;
+  margin: 0;
 }
 
 .demo-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    min-height: calc(100% - 104px);
-    color:#777;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: calc(100% - 104px);
+  color: #555;
 }
 
-h4{
-    margin: 5px 0 5px 0;
-    font-size:18px;
-}
-p{
-    padding:0;
-    margin:0 0 5px;
+h4 {
+  margin: 5px 0 5px 0;
+  font-size: 18px;
 }
 
-.demo-container > p:first-child{
+p {
+  padding: 0;
+  margin: 0 0 5px;
+}
+
+.demo-container>p:first-child {
   margin: 10px 0;
 }
 
-.examples{
-  margin-top:10px;
+.examples {
+  margin-top: 10px;
   margin-bottom: 15px;
   overflow: hidden;
 }
-.examples h4{
+
+.examples h4 {
   margin-top: 15px;
 }
 
-.well{
+.well {
   padding: 26px 0px 0px;
   box-sizing: border-box;
-  border:1px solid #eee;
+  border: 1px solid #eee;
   border-radius: 4px;
   border-bottom-left-radius: 0%;
   border-bottom-right-radius: 0%;
 }
 
-.well .well-body{
-    width: 100%;
-    max-width: 400px;
-    padding: 0px 12px;
+.well .well-body {
+  width: 100%;
+  max-width: 400px;
+  padding: 0px 12px;
 }
 
-.well .code-snippet{
-  margin-top:25px;
+.well .code-snippet {
+  margin-top: 25px;
+  position: relative;
 }
-.well .code-snippet pre{
+.well .code-snippet::before{
+  content: 'source code';
+  display: inline-block;
+  width: 76px;
+  padding: 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  opacity: 0.3;
+  text-transform: capitalize;
+}
+
+.well .code-snippet pre {
   margin-bottom: 0px;
+  background: #f3f5f3;
 }
 
+.examples p.notes {
+  margin-top: 5px;
+}
+
+.examples p.notes code {
+  color: inherit;
+  background: #f1f1f1;
+  color: #444;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 2px 1px;
+}
