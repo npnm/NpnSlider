@@ -10,7 +10,7 @@ export class Utilities {
     return obj === undefined || obj === null || obj === '';
   }
   public toBoolean(obj: any, ...allowedValues): boolean {
-    return (obj === '' || obj === 'true' || allowedValues.includes(obj)) ? true : false;
+    return (obj === '' || obj === 'true' || allowedValues.indexOf(obj) !== -1) ? true : false;
   }
   public findNextValidStepValue(n: number, step: number): number {
     const divisorsSet1: number[] = [];
