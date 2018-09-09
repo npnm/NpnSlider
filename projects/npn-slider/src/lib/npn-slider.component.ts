@@ -134,10 +134,6 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
       console.warn('Invalid step value "' + this.step + '" : and took "' + newStep + '" as default step');
       this.step = newStep;
     }
-    if (this.sliderWidth / (this.totalDiff / this.step) < 10) {
-      console.error(`'step' value is too small compared to min & max value difference and slider width.
-        Slider might not work properly!. Provide slight large value for 'step'`);
-    }
     this.initializeStepIndicator();
     this.setHandlerPosition();
   }
@@ -184,6 +180,9 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
           this.stepIndicatorPositions.push(+leftPosition.toFixed(2));
           leftPosition += increment;
         }
+      }else{
+        console.warn(`As 'step' value is too small compared to min & max value difference and slider width,
+          Step Indicator can't be displayed!. Provide slight large value for 'step'`);
       }
     } else {
       this.stepIndicatorPositions.length = 0;
