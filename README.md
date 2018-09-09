@@ -1,6 +1,6 @@
 # [NpnSlider](https://npnm.github.io/NpnSlider/) (A Multi Range Slider Component)
 
-NpnSlider is reusable multi range slider component using Angular v6.0
+NpnSlider is a reusable range slider component using Angular v6.0
 
 ## Installation
 ### [NPM](https://www.npmjs.com/package/npn-slider)
@@ -25,8 +25,11 @@ Attributes | Description
 @Input() <br> **showStepIndicator**: boolean | Whether the step indicator should display or not
 @Input() <br> **minSelected**: number | The selected value for slider's left handler
 @Input() <br> **maxSelected**: number | The selected value for slider's right handler
-@Input() <br> **disabled**: string | To disable the slider. Valid values: _'true'_ or _'disabled'_
-@Output() <br> **onChange**: EventEmitter<number[]>() | The event will be fired on change of selected range of values.<br>_Returns: Selected range of values as an array[]_
+@Input() <br> **disabled**: string | To disable the slider. Valid values: _'true'_ or _'disabled'_ or _empty attribute_
+@Input() <br> **multiRange**: boolean | To switch between Mutli range and Single range mode. Slider is multi range by default
+@Input() <br> **hide-tooltip**: boolean | To hide the tooltip that shows on hover of slider handler. Default value: _'false'_
+@Input() <br> **hide-values**: boolean | To hide values displayed at bottom of slider. Default value: _'false'_
+@Output() <br> **onChange**: EventEmitter<number[]>() | The event will be fired on change of selected range of values.<br>_Returns: Selected range of values as an array[],_ <br>_On Single range mode, a number array with single value will be returned_
 
 ### Example and Sample Code
 a) **Import _'NpnSliderModule'_ in your app module**
