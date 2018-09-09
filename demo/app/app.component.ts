@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  codeSnippetText = "Source Code";
   minValue2 = 1000;
   maxValue2 = 2000;
   step2 = 500;

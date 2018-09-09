@@ -12,7 +12,8 @@
   </div>
 </header>
 <div class="container demo-container">
-  <p>NpnSlider is a multi range slider component using <em>Angular <small>v6.0</small></em>. It can be used either as a multi range or a single range slider. By default, it is a multi range slider.
+  <p>NpnSlider is a multi range slider component using <em>Angular <small>v6.0</small></em>. It can be used either as a
+    multi range or a single range slider. By default, it is a multi range slider.
   </p>
   <div class="examples">
     <h4>Basic Slider <small><i>(Multi Range)</i></small></h4>
@@ -23,6 +24,7 @@
         <p>Selected Values: {{currentValues | json}}</p>
       </div>
       <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
           ```html
           &lt;npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"&gt;&lt;/npn-slider&gt;
@@ -39,6 +41,7 @@
         </npn-slider>
       </div>
       <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
           ```html
           &lt;npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010"&gt;&lt;/npn-slider&gt;
@@ -57,12 +60,13 @@
         </npn-slider>
       </div>
       <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
           ```html
           &lt;npn-slider [min]="1000" [max]="5000"
-                      [minSelected]="2000" [maxSelected]="4000"
-                      [step]="500"
-                      [showStepIndicator]="true"&gt;
+          [minSelected]="2000" [maxSelected]="4000"
+          [step]="500"
+          [showStepIndicator]="true"&gt;
           &lt;/npn-slider&gt;
           ```
         </div>
@@ -70,35 +74,41 @@
     </div>
   </div>
   <div class="examples">
-      <h4>Disabled Slider</h4>
-      <div class="well">
-        <div class="well-body">
-          <npn-slider [min]="1000" [max]="5000" disabled>
-          </npn-slider>
-        </div>
-        <div class="code-snippet">
-          <div markdown ngPreserveWhitespaces>
-            ```html
-            &lt;npn-slider [min]="1000" [max]="5000" disabled&gt;&lt;/npn-slider&gt;
-            ```
-          </div>
+    <h4>Disabled Slider</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="1000" [max]="5000" disabled>
+        </npn-slider>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+          ```html
+          &lt;npn-slider [min]="1000" [max]="5000" disabled&gt;&lt;/npn-slider&gt;
+          ```
         </div>
       </div>
     </div>
-    <div class="examples">
-        <h4>Slider With No Tooltip and Values</h4>
-        <div class="well">
-          <div class="well-body">
-            <npn-slider hide-tooltip hide-values [min]="1000" [max]="1500" [minSelected]="1200" [multiRange]="false">
-            </npn-slider>
-          </div>
-          <div class="code-snippet">
-            <div markdown ngPreserveWhitespaces>
-              ```html
-              &lt;npn-slider hide-tooltip hide-values [min]="1000" [max]="2000" [minSelected]="1200" [multiRange]="false"&gt;&lt;/npn-slider&gt;
-              ```
-            </div>
-          </div>
+  </div>
+  <div class="examples">
+    <h4>Slider With No Tooltip and Values</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider hide-tooltip hide-values [min]="1000" [max]="1500" [minSelected]="1200" [multiRange]="false">
+        </npn-slider>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+          ```html
+          &lt;npn-slider hide-tooltip hide-values [min]="1000" [max]="2000" [minSelected]="1200"
+          [multiRange]="false"&gt;&lt;/npn-slider&gt;
+          ```
         </div>
       </div>
+    </div>
+  </div>
 </div>
+<footer>
+Documetation for Version npn-slider-v1.2.0
+</footer>
