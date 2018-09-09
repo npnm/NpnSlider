@@ -58,14 +58,14 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
 
   @Input('minSelected')
   set setMinSelectedValues(value: number) {
-    if (!isNaN(value) && this.isNullOrEmpty(this.minSelected)) {
+    if (!isNaN(value) && this.minSelected !== Number(value)) {
       this.minSelected = Number(value);
     }
   }
 
   @Input('maxSelected')
   set setMaxSelectedValues(value: number) {
-    if (!isNaN(value) && this.isNullOrEmpty(this.maxSelected)) {
+    if (!isNaN(value) && this.maxSelected !== Number(value)) {
       this.maxSelected = Number(value);
     }
   }
@@ -78,18 +78,18 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
 
   @Input() showStepIndicator = false;
   @Input() multiRange = true;
-  @Input("hide-tooltip")
+  @Input('hide-tooltip')
   set setHideTooltip(value: boolean) {
     this.hideTooltip = this.toBoolean(value);
   }
-  @Input("hide-values")
+  @Input('hide-values')
   set setHideValues(value: boolean) {
     this.hideValues = this.toBoolean(value);
   }
 
   @Input('disabled')
   set setDisabled(value: string) {
-    this.isDisabled = this.toBoolean(value, "disabled");
+    this.isDisabled = this.toBoolean(value, 'disabled');
   }
 
   @Output() onChange = new EventEmitter<number[]>();
@@ -99,7 +99,15 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes['setMinSelectedValues'] && !changes['setMaxSelectedValues'] && this.sliderInitiated) {
+    if (this.sliderInitiated) {
+      if (!this.isNullOrEmpty(changes.setMinSelectedValues)
+        && changes.setMinSelectedValues.previousValue === changes.setMinSelectedValues.currentValue) {
+        return;
+      }
+      if (!this.isNullOrEmpty(changes.setMaxSelectedValues)
+        && changes.setMaxSelectedValues.previousValue === changes.setMaxSelectedValues.currentValue) {
+        return;
+      }
       this.resetModel();
     }
   }
@@ -180,7 +188,7 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
           this.stepIndicatorPositions.push(+leftPosition.toFixed(2));
           leftPosition += increment;
         }
-      }else{
+      } else {
         console.warn(`As 'step' value is too small compared to min & max value difference and slider width,
           Step Indicator can't be displayed!. Provide slight large value for 'step'`);
       }
