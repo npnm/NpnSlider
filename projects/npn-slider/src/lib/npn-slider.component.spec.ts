@@ -34,6 +34,8 @@ describe('NpnSliderComponent', () => {
     npnSlider.setMaxValues = defaultMaxValue;
     npnSlider.stepValue = defaultStepValue;
 
+    fixture.detectChanges();
+
     sliderElem = fixture.debugElement;
     leftHandlerElem = sliderElem.query(By.css('.left-handle'));
     rightHandlerElem = sliderElem.query(By.css('.right-handle'));
@@ -55,6 +57,7 @@ describe('NpnSliderComponent', () => {
 
   it('slider should display step indicator', () => {
     npnSlider.showStepIndicator = true;
+    npnSlider.ngOnChanges({});
     fixture.detectChanges();
 
     let stepIndicatorElem = sliderElem.query(By.css('.step-indicators'));
@@ -69,32 +72,22 @@ describe('NpnSliderComponent', () => {
 
   it("should palce left handler on the correct position based on selectedValues", () => {
     npnSlider.setMinSelectedValues = 3000;
-    fixture.detectChanges();
-    let leftValue = leftHandlerElem.styles.left.substr(0, 5) + leftHandlerElem.styles.left.substr(-1, 1);
-    expect(leftValue).toBe('33.33%', "Left handler should be position with respect to the min selected value");
-
-    npnSlider.setMinSelectedValues = 3500;
     npnSlider.ngOnChanges({
-      setMinSelectedValues: new SimpleChange(3000, 3500, false)
+      setMinSelectedValues: new SimpleChange(0, 3000, false)
     });
     fixture.detectChanges();
-    leftValue = leftHandlerElem.styles.left.substr(0, 5) + leftHandlerElem.styles.left.substr(-1, 1);
-    expect(leftValue).toBe('33.33%', "Left handler position should not change");
+    let leftValue = trimPercentageValue(leftHandlerElem.styles.left);
+    expect(leftValue).toBe('33.33%', "Left handler should be position with respect to the min selected value");
   });
 
   it("should place right handler on the correct position based on selectedValues", () => {
     npnSlider.setMaxSelectedValues = 4000;
-    fixture.detectChanges();
-    let rightValue = rightHandlerElem.styles.left.substr(0, 5) + rightHandlerElem.styles.left.substr(-1, 1);
-    expect(rightValue).toBe('66.66%', "Right handler should be position with respect to the max selected value");
-
-    npnSlider.setMaxSelectedValues = 3500;
     npnSlider.ngOnChanges({
-      setMaxSelectedValues: new SimpleChange(4000, 3500, false)
+      setMaxSelectedValues: new SimpleChange(0, 4000, false)
     });
     fixture.detectChanges();
-    rightValue = rightHandlerElem.styles.left.substr(0, 5) + rightHandlerElem.styles.left.substr(-1, 1);
-    expect(rightValue).toBe('66.66%', "Right handler position should not change");
+    let rightValue = trimPercentageValue(rightHandlerElem.styles.left);
+    expect(rightValue).toBe('66.66%', "Right handler should be position with respect to the max selected value");
   });
 
   it("Left handler should move on handlerSliding() method call", () => {
@@ -121,4 +114,26 @@ describe('NpnSliderComponent', () => {
     expect(leftHandlerElem.query(By.css('.handle-tooltip')).nativeElement.textContent).toBe(expectValue.toString());
   });
 
+  it("Single range slider should only contain one handler", () => {
+    npnSlider.multiRange = false;
+    npnSlider.setMinSelectedValues = 2500;
+    npnSlider.ngOnChanges({
+      setMinSelectedValues: new SimpleChange(0, 2500, false)
+    });
+    fixture.detectChanges();
+    leftHandlerElem = sliderElem.query(By.css('.left-handle'));
+    rightHandlerElem = sliderElem.query(By.css('.right-handle'));
+
+    expect(leftHandlerElem).toBeTruthy("Left handler should not be hidden");
+    expect(rightHandlerElem).toBeNull("Right handler should be hidden");
+
+    let filler = sliderElem.query(By.css('div.filler > span'));
+    expect(trimPercentageValue(filler.styles.width)).toBe("16.66%");
+  });
+
 });
+
+function trimPercentageValue(value: string): string {
+  return (value.length === 0) ? "" :
+    value.substr(0, (value.length > 5) ? 5 : value.length - 1) + value.substr(-1, 1);
+}
