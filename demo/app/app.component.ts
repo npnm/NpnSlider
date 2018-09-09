@@ -12,11 +12,7 @@ export class AppComponent {
   currentValues = [0, 0];
   currentValues2 = [2000, 3500];
 
-  onSliderChange1(selectedValues: number[]) {
+  onSliderChange(selectedValues: number[]) {
     this.currentValues = selectedValues;
-  }
-
-  onSliderChange2(selectedValues: number[]) {
-    this.currentValues2 = selectedValues;
   }
 }

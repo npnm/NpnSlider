@@ -18,8 +18,9 @@
     <h4>Basic Slider <small><i>(Multi Range)</i></small></h4>
     <div class="well">
       <div class="well-body">
-        <npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange1($event)">
+        <npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)">
         </npn-slider>
+        <p>Selected Values: {{currentValues | json}}</p>
       </div>
       <div class="code-snippet">
         <div markdown ngPreserveWhitespaces>

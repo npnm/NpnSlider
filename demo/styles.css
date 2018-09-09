@@ -89,6 +89,12 @@ p {
   max-width: 400px;
   padding: 0px 12px;
 }
+.well .well-body > p{
+  display: block;
+  margin:15px 0 -10px;
+  padding-left: 2px;
+  font-size: 0.80rem;
+}
 
 .well .code-snippet {
   margin-top: 25px;
