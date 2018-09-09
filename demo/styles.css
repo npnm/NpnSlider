@@ -103,7 +103,7 @@ p {
 .well .code-snippet::before{
   content: 'source code';
   display: inline-block;
-  width: 76px;
+  width: 80px;
   padding: 2px 4px;
   position: absolute;
   top: 0;
