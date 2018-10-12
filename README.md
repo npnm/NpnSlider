@@ -7,7 +7,7 @@ NpnSlider is a reusable range slider component using Angular v6.0. It can be use
 ```sh
 npm install --save npn-slider
 ```
-### [Yarn](https://yarn.pm/npn-slider)
+### [Yarn](https://yarnpkg.com/en/package/npn-slider)
 ```sh
 yarn add npn-slider
 ```
