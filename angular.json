@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AngularSlider": {
+    "NpnSliderApp": {
       "root": "",
       "sourceRoot": "demo",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AngularSlider",
+            "outputPath": "dist/NpnSliderApp",
             "index": "demo/index.html",
             "main": "demo/main.ts",
             "polyfills": "demo/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AngularSlider:build"
+            "browserTarget": "NpnSliderApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AngularSlider:build:production"
+              "browserTarget": "NpnSliderApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AngularSlider:build"
+            "browserTarget": "NpnSliderApp:build"
           }
         },
         "test": {
@@ -100,7 +100,7 @@
         }
       }
     },
-    "AngularSlider-e2e": {
+    "NpnSliderApp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -108,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AngularSlider:serve"
+            "devServerTarget": "NpnSliderApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "AngularSlider:serve:production"
+              "devServerTarget": "NpnSliderApp:serve:production"
             }
           }
         },
@@ -169,5 +169,5 @@
       }
     }
   },
-  "defaultProject": "AngularSlider"
+  "defaultProject": "NpnSliderApp"
 }

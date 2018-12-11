@@ -1,7 +1,7 @@
 {
     "basePath": "../../",
     "copyDir":{
-        "source":"dist\\AngularSlider",
+        "source":"dist\\NpnSliderApp",
         "destination":"docs"
     },
     "htmlBaseUrl":"https://npnm.github.io/NpnSlider/"
