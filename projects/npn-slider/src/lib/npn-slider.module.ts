@@ -1,10 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NpnSliderComponent } from './npn-slider.component';
 
 @NgModule({
   imports: [
-    BrowserModule
+    CommonModule
   ],
   declarations: [NpnSliderComponent],
   exports: [NpnSliderComponent]
