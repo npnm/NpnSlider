@@ -2,7 +2,7 @@
 
 NpnSlider is a reusable range slider component using Angular v6.0. It can be used either as a multi range or a single range slider. By default, it is a multi range slider.
 
-_[View Release Notes](https://github.com/npnm/NpnSlider/releases/tag/v1.3.0)_
+_[View Release Notes](https://github.com/npnm/NpnSlider/releases/tag/v1.3.2)_
 
 ## Usage
 ### Html
