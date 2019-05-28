@@ -159,13 +159,10 @@ export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
       /*
       * Validation for Selected range values
       */
-      this.minSelected = this.isNullOrEmpty(this.minSelected) ? 0 : this.minSelected;
-      this.maxSelected = this.isNullOrEmpty(this.maxSelected) ? 0 : this.maxSelected;
-
-      if (this.minSelected < this.minValue || this.minSelected > this.maxValue) {
+      if (this.isNullOrEmpty(this.minSelected) || this.minSelected < this.minValue || this.minSelected > this.maxValue) {
         this.minSelected = this.minValue;
       }
-      if (this.maxSelected < this.minValue || this.maxSelected > this.maxValue) {
+      if (this.isNullOrEmpty(this.maxSelected) || this.maxSelected < this.minValue || this.maxSelected > this.maxValue) {
         this.maxSelected = this.maxValue;
       }
       if (this.minSelected > this.maxSelected) {
