@@ -15,7 +15,7 @@ describe('NpnSliderComponent', () => {
 
   const handlerIndex = SliderHandlerEnum;
 
-  const defaultMinValue = 2000;
+  let defaultMinValue = 2000;
   const defaultMaxValue = 5000;
   const defaultStepValue = 500;
 
@@ -30,9 +30,7 @@ describe('NpnSliderComponent', () => {
     fixture = TestBed.createComponent(NpnSliderComponent);
     npnSlider = fixture.componentInstance;
 
-    npnSlider.setMinValues = defaultMinValue;
-    npnSlider.setMaxValues = defaultMaxValue;
-    npnSlider.stepValue = defaultStepValue;
+    applyValues();
 
     fixture.detectChanges();
 
@@ -43,16 +41,7 @@ describe('NpnSliderComponent', () => {
 
   it('should create "npnSlider" with two handlers with correct position and correct values', () => {
     fixture.detectChanges();
-    expect(npnSlider).toBeTruthy();
-    // Left handler and tooltip
-    expect(leftHandlerElem.styles.left).toBe('0%', 'Left handler should be at left most side of slider');
-    expect(leftHandlerElem.query(By.css('.handle-tooltip')).nativeElement.textContent).toBe(defaultMinValue.toString());
-    // Right handler and tooltip
-    expect(rightHandlerElem.styles.left).toBe('100%', 'Right handler should be at right most side of slider');
-    expect(rightHandlerElem.query(By.css('.handle-tooltip')).nativeElement.textContent).toBe(defaultMaxValue.toString());
-    // Values displayed at bottom of slider
-    expect(sliderElem.query(By.css('.values > span:first-child')).nativeElement.textContent).toBe(defaultMinValue.toString());
-    expect(sliderElem.query(By.css('.values > span:last-child')).nativeElement.textContent).toBe(defaultMaxValue.toString());
+    testBasicSliderBehavior();
   });
 
   it('slider should display step indicator', () => {
@@ -129,6 +118,44 @@ describe('NpnSliderComponent', () => {
 
     const filler = sliderElem.query(By.css('div.filler > span'));
     expect(trimPercentageValue(filler.styles.width)).toBe('16.66%');
+  });
+
+  function testBasicSliderBehavior() {
+    expect(npnSlider).toBeTruthy();
+    // Left handler and tooltip
+    expect(leftHandlerElem.styles.left).toBe('0%', 'Left handler should be at left most side of slider');
+    expect(leftHandlerElem.query(By.css('.handle-tooltip')).nativeElement.textContent).toBe(defaultMinValue.toString());
+    // Right handler and tooltip
+    expect(rightHandlerElem.styles.left).toBe('100%', 'Right handler should be at right most side of slider');
+    expect(rightHandlerElem.query(By.css('.handle-tooltip')).nativeElement.textContent).toBe(defaultMaxValue.toString());
+    // Values displayed at bottom of slider
+    expect(sliderElem.query(By.css('.values > span:first-child')).nativeElement.textContent).toBe(defaultMinValue.toString());
+    expect(sliderElem.query(By.css('.values > span:last-child')).nativeElement.textContent).toBe(defaultMaxValue.toString());
+  }
+
+  function applyValues() {
+    npnSlider.setMinValues = defaultMinValue;
+    npnSlider.setMaxValues = defaultMaxValue;
+    npnSlider.stepValue = defaultStepValue;
+  }
+
+  describe('NpnSliderComponent InitValues', () => {
+
+    it('init value is zero: should create "npnSlider" with two handlers with correct position and correct values', () => {
+      fixture = TestBed.createComponent(NpnSliderComponent);
+      npnSlider = fixture.componentInstance;
+      defaultMinValue = 0;
+      applyValues();
+
+      fixture.detectChanges();
+
+      sliderElem = fixture.debugElement;
+      leftHandlerElem = sliderElem.query(By.css('.left-handle'));
+      rightHandlerElem = sliderElem.query(By.css('.right-handle'));
+      fixture.detectChanges();
+      testBasicSliderBehavior();
+      defaultMinValue = 2000;
+    });
   });
 
 });
