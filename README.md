@@ -1,5 +1,7 @@
 # [NpnSlider](https://npnm.github.io/NpnSlider/) (A Multi Range Slider Component)
+[![NPM Version](https://img.shields.io/npm/v/npn-slider)](https://www.npmjs.com/package/npn-slider)
 [![Build Status](https://travis-ci.org/npnm/NpnSlider.svg?branch=master)](https://travis-ci.org/npnm/NpnSlider)
+[![License](https://img.shields.io/github/license/npnm/npnslider)](LICENSE)
 
 NpnSlider is a reusable range slider component using Angular v6.0. It can be used either as a multi range or a single range slider. By default, it is a multi range slider.
 
