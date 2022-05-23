@@ -8,7 +8,7 @@ import { SliderHandlerEnum } from './slider-handler.enum';
 @Component({
   selector: 'npn-slider',
   templateUrl: './npn-slider.component.html',
-  styleUrls: ['./npn-slider.component.css']
+  styleUrls: ['./npn-slider.component.scss']
 })
 export class NpnSliderComponent extends Utilities implements OnInit, OnChanges {
   private sliderModel = [0, 0, 0];
