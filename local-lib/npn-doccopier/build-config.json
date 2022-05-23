@@ -2,7 +2,7 @@
     "basePath": "../../",
     "copyDir":{
         "source":"dist\\NpnSliderApp",
-        "destination":"docs"
+        "destination":"docs\\v2"
     },
     "htmlBaseUrl":"https://npnm.github.io/NpnSlider/"
 }
