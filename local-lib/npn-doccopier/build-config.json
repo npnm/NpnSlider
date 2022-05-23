@@ -4,5 +4,5 @@
         "source":"dist\\NpnSliderApp",
         "destination":"docs\\v2"
     },
-    "htmlBaseUrl":"https://npnm.github.io/NpnSlider/"
+    "htmlBaseUrl":"/NpnSlider/v2/"
 }
