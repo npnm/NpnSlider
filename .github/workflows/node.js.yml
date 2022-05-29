@@ -28,4 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build-lib --if-present
-    - run: npm run test-lib
+    - run: npm run test-lib -- --watch=false --browsers=ChromeHeadless
